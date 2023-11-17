@@ -1,3 +1,8 @@
 <h1>Create a New Bookmark</h1>
-<%= render "bookmarks/form", bookmark: @bookmark %>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.input :comment, placeholder: 'Comment on the movie' %>
+  <%= f.association :movie, prompt: "Select a movie" %>
+  <%= f.submit class: "btn btn-flat" %>
+<% end %>
+
 <%= link_to "Lists", lists_path %>

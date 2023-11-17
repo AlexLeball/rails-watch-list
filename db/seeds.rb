@@ -1,4 +1,3 @@
-Movie.destroy_all if Rails.env.development?
 
 Movie.create!(
   title: "Wonder Woman 1984",

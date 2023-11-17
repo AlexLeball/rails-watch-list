@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_action :set_list, only: [:show]
 
   def index
     @lists = List.all
@@ -6,7 +7,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @bookmark = Bookmark.new
+    @bookmark = Bookmark.all
   end
 
   def new
@@ -19,9 +20,13 @@ class ListsController < ApplicationController
     redirect_to lists_path(@list)
   end
 
-private
+  private
+
+  def set_list
+    @list = List.find(params[:id])
+  end
 
   def list_params
-    params.require(:list).permit(:name, :bookmark)
+    params.require(:list).permit(:name, :movie, :bookmark)
   end
 end
